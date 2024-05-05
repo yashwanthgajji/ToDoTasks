@@ -1,26 +1,23 @@
 package com.yash.android.todotasks
 
 import androidx.lifecycle.ViewModel
-import java.util.Date
-import java.util.UUID
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class TaskListViewModel : ViewModel(){
-    val myTasks = mutableListOf<MyTask>()
+class TaskListViewModel : ViewModel() {
+    private val taskRepository = TaskRepository.getInstance()
+    private val _myTasks: MutableStateFlow<List<MyTask>> = MutableStateFlow(emptyList())
+    public val myTasks: StateFlow<List<MyTask>>
+        get() = _myTasks.asStateFlow()
 
     init {
-        for (i in 0..100) {
-            val myTask = MyTask(
-                taskID = UUID.randomUUID(),
-                title = "Task-$i",
-                description = "This is description for task-$i",
-                status = when {
-                    (i % 3) == 0 -> TaskStatus.InProgress
-                    i % 5 == 0 -> TaskStatus.Done
-                    else -> TaskStatus.Todo
-                },
-                Date()
-            )
-            myTasks += myTask
+        viewModelScope.launch {
+            taskRepository.getALlTasks().collect {
+                _myTasks.value = it
+            }
         }
     }
 }

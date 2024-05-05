@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yash.android.todotasks.databinding.FragmentTaskListBinding
+import kotlinx.coroutines.launch
 
 class TaskListFragment : Fragment() {
 
@@ -30,9 +34,13 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskRecyclerView.layoutManager = LinearLayoutManager(context)
-        val myTasks = taskListViewModel.myTasks
-        val adapter = TaskListAdapter(myTasks)
-        binding.taskRecyclerView.adapter = adapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                taskListViewModel.myTasks.collect { myTasks ->
+                    binding.taskRecyclerView.adapter = TaskListAdapter(myTasks)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
