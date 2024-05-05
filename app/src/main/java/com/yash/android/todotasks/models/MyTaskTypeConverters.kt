@@ -1,4 +1,4 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.models
 
 import androidx.room.TypeConverter
 import java.util.Date

@@ -1,7 +1,8 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.database
 
 import androidx.room.Dao
 import androidx.room.Query
+import com.yash.android.todotasks.models.MyTask
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yash.android.todotasks.TaskListAdapter
+import com.yash.android.todotasks.TaskListViewModel
 import com.yash.android.todotasks.databinding.FragmentTaskListBinding
 import kotlinx.coroutines.launch
 

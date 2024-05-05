@@ -1,4 +1,4 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.models
 
 enum class TaskStatus {
     Todo,

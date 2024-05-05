@@ -1,7 +1,8 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.database
 
 import android.content.Context
 import androidx.room.Room
+import com.yash.android.todotasks.models.MyTask
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
@@ -17,7 +18,7 @@ class TaskRepository private constructor(context: Context){
     public fun getTask(id: UUID): Flow<MyTask> = database.taskDao().getTaskById(id)
 
     companion object {
-        private var INSTANCE: TaskRepository ?= null
+        private var INSTANCE: TaskRepository?= null
 
         public fun initialize(context: Context) {
             if (INSTANCE == null) {
@@ -26,7 +27,7 @@ class TaskRepository private constructor(context: Context){
         }
 
         public fun getInstance(): TaskRepository {
-            return INSTANCE?: throw IllegalStateException("Task Repository must be initialized before use")
+            return INSTANCE ?: throw IllegalStateException("Task Repository must be initialized before use")
         }
     }
 }

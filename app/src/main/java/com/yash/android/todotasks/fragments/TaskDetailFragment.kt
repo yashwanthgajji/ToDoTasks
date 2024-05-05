@@ -1,10 +1,12 @@
-package com.yash.android.todotasks
+package com.yash.android.todotasks.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.yash.android.todotasks.models.MyTask
+import com.yash.android.todotasks.models.TaskStatus
 import com.yash.android.todotasks.databinding.FragmentTaskDetailBinding
 import java.util.Date
 import java.util.UUID
