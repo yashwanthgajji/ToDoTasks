@@ -1,6 +1,7 @@
 package com.yash.android.todotasks
 
 import androidx.lifecycle.ViewModel
+import java.util.Date
 import java.util.UUID
 
 class TaskListViewModel : ViewModel(){
@@ -16,7 +17,8 @@ class TaskListViewModel : ViewModel(){
                     (i % 3) == 0 -> TaskStatus.InProgress
                     i % 5 == 0 -> TaskStatus.Done
                     else -> TaskStatus.Todo
-                }
+                },
+                Date()
             )
             myTasks += myTask
         }
