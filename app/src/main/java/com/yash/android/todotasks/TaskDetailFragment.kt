@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.yash.android.todotasks.databinding.FragmentTaskDetailBinding
+import java.util.Date
 import java.util.UUID
 
 class TaskDetailFragment : Fragment() {
@@ -24,7 +25,8 @@ class TaskDetailFragment : Fragment() {
             taskID = UUID.randomUUID(),
             title = "Complete the project",
             description = "Its a very big project. It takes some time. Wait for a few weeks.",
-            status = TaskStatus.InProgress
+            status = TaskStatus.InProgress,
+            dateCreated = Date()
         )
     }
 
@@ -53,17 +55,17 @@ class TaskDetailFragment : Fragment() {
                     taskDetailDoneRadiobutton.isChecked = true
                 }
             }
-            taskDetailTodoRadiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            taskDetailTodoRadiobutton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked && myTask.status != TaskStatus.Todo) {
                     myTask = myTask.copy(status = TaskStatus.Todo)
                 }
             }
-            taskDetailInprogressRadiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            taskDetailInprogressRadiobutton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked && myTask.status != TaskStatus.InProgress) {
                     myTask = myTask.copy(status = TaskStatus.InProgress)
                 }
             }
-            taskDetailDoneRadiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            taskDetailDoneRadiobutton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked && myTask.status != TaskStatus.Done) {
                     myTask = myTask.copy(status = TaskStatus.Done)
                 }

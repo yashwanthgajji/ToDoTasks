@@ -13,8 +13,8 @@ class TaskRepository private constructor(context: Context){
         DATABASE_NAME
     ).build()
 
-    public suspend fun getALlTasks(): Flow<List<MyTask>> = database.taskDao().getAllTasks()
-    public suspend fun getTask(id: UUID): Flow<MyTask> = database.taskDao().getTaskById(id)
+    public fun getALlTasks(): Flow<List<MyTask>> = database.taskDao().getAllTasks()
+    public fun getTask(id: UUID): Flow<MyTask> = database.taskDao().getTaskById(id)
 
     companion object {
         private var INSTANCE: TaskRepository ?= null

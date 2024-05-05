@@ -8,8 +8,8 @@ import java.util.UUID
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM MyTask")
-    public suspend fun getAllTasks(): Flow<List<MyTask>>
+    public fun getAllTasks(): Flow<List<MyTask>>
 
     @Query("SELECT * FROM MyTask WHERE taskID=(:id)")
-    public suspend fun getTaskById(id: UUID): Flow<MyTask>
+    public fun getTaskById(id: UUID): Flow<MyTask>
 }
